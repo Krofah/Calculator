@@ -1,46 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Calculator</title>
+    <title>Calculator</title>
     <script>
-        function add(num1, num2) {
-            return num1 + num2;
-        }
+        function add() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
 
-        function subtract(num1, num2) {
-            return num1 - num2;
-        }
-
-        function multiply(num1, num2) {
-            return num1 * num2;
-        }
-
-        function divide(num1, num2) {
-            if (num2 !== 0) {
-                var result = num1 / num2;
-                return result.toFixed(2);  // Round the result to 2 decimal places
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("output").innerHTML = "Error: Please enter valid numbers";
             } else {
-                return "Error: Division by zero is not allowed";
+                var result = num1 + num2;
+                document.getElementById("output").innerHTML = "Addition: " + result;
             }
         }
 
-        // Test the calculator functions
-        console.log(add(5, 3));
-        console.log(subtract(5, 3));
-        console.log(multiply(5, 3));
-        console.log(divide(5, 3));
+        function subtract() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("output").innerHTML = "Error: Please enter valid numbers";
+            } else {
+                var result = num1 - num2;
+                document.getElementById("output").innerHTML = "Subtraction: " + result;
+            }
+        }
+
+        function multiply() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("output").innerHTML = "Error: Please enter valid numbers";
+            } else {
+                var result = num1 * num2;
+                document.getElementById("output").innerHTML = "Multiplication: " + result;
+            }
+        }
+
+        function divide() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("output").innerHTML = "Error: Please enter valid numbers";
+            } else if (num2 === 0) {
+                document.getElementById("output").innerHTML = "Error: Division by zero is not allowed";
+            } else {
+                var result = num1 / num2;
+                document.getElementById("output").innerHTML = "Division: " + result.toFixed(2);
+            }
+        }
+
+        function clearFields() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.getElementById("output").innerHTML = "";
+        }
     </script>
 </head>
 <body>
-    <!-- Display the output on the web page -->
-    <p id="output"></p>
-
-    <script>
-        // Call the functions and display the output on the web page
-        document.getElementById("output").innerHTML = "Addition: " + add(5, 3) + "<br>" +
-                                                      "Subtraction: " + subtract(5, 3) + "<br>" +
-                                                      "Multiplication: " + multiply(5, 3) + "<br>" +
-                                                      "Division: " + divide(5, 3);
-    </script>
+    <h1>Calculator</h1>
+    <label for="num1">Number 1:</label>
+    <input type="text" id="num1"><br><br>
+    <label for="num2">Number 2:</label>
+    <input type="text" id="num2"><br><br>
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Subtract</button>
+    <button onclick="multiply()">Multiply</button>
+    <button onclick="divide()">Divide</button>
+    <button onclick="clearFields()">Clear</button>
+    <br><br>
+    <div id="output"></div>
 </body>
 </html>
